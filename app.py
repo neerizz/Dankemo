@@ -82,11 +82,47 @@ def register():
         session["user_id"] = resp
         return redirect("/home")
 
+
 @app.route("/logout")
 def logout():
     session.clear()
     flash("You have successfully logged out.")
     return redirect("/login")
+
+
+@app.route("/home")
+@login_required
+def home():
+    uname = db.execute("SELECT username FROM users WHERE id=:cid", 
+                    cid=session["user_id"])[0]["username"]
+    gpoints = db.execute("SELECT gpoints FROM users WHERE id=:cid", 
+                cid=session["user_id"])[0]["gpoints"]
+    entries = db.execute("SELECT * FROM journals WHERE username=:username", 
+                username=uname)
+    return render_template("home.html", uname=uname, gpoints=gpoints, entries=entries)
+
+
+@app.route("/add", methods = ["GET", "POST"])
+@login_required
+def add():
+    if request.method == "GET":
+        return render_template("add_note.html")
+    else:
+        title = request.form.get("title")
+        note = request.form.get("note_detailed")
+        uname = db.execute("SELECT username FROM users WHERE id=:cid", 
+                cid=session["user_id"])[0]["username"]
+        db.execute("INSERT INTO journals(username, date, note, title) VALUES(:username, current_date, :note, :title)", username=uname, note=note, title=title)
+        return redirect("/home")
+
+@app.route("/notes")
+@login_required
+def notes():
+    uname = db.execute("SELECT username FROM users WHERE id=:cid", 
+                    cid=session["user_id"])[0]["username"]
+    entries = db.execute("SELECT * FROM journals WHERE username=:username", 
+                username=uname)
+    return render_template("all_notes.html", uname=uname, entries=entries)
 
 
 if __name__ == '__main__':

@@ -26,13 +26,13 @@
                     <li class="nav-item">
                         <div class="nav-item dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" style="text-transform: uppercase;letter-spacing: 0.1rem;font-weight: 700;font-size: 0.85rem;font-family: Lato, sans-serif;color: rgba(255,255,255,0.5);">Notes&nbsp;</a>
                             <div
-                                class="dropdown-menu"><a class="dropdown-item" href="#">Add a note</a><a class="dropdown-item" href="all_notes.html">Show all notes</a></div>
+                                class="dropdown-menu"><a class="dropdown-item" href="#">Add a note</a><a class="dropdown-item" href="/notes">Show all notes</a></div>
                             </div>
                     </li>
                     <li class="nav-item">
                     <div class="nav-item dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" style="text-transform: uppercase;letter-spacing: 0.1rem;font-weight: 700;font-size: 0.85rem;font-family: Lato, sans-serif;color: rgba(255,255,255,0.5);">WELCOME, USER</a>
                         <div
-                            class="dropdown-menu"><a class="dropdown-item" href="inner.html">Home</a><a class="dropdown-item" href="#">Change Password</a><a class="dropdown-item" href="#">Logout</a></div>
+                            class="dropdown-menu"><a class="dropdown-item" href="inner.html">Home</a><a class="dropdown-item" href="#">Change Password</a><a class="dropdown-item" href="/logout">Logout</a></div>
                         </div>
                     </li>
                 </ul>
@@ -43,14 +43,17 @@
         <div class="container mt-4 mb-4">
             <div class="row justify-content-md-center">
               <div style="margin-top: 90px" class="col-md-12 col-lg-8">
-                <h1 class="h2 mb-4">Add a note</h1>
-                <form action="#"></form>
+                <h1 class="h2 mb-4" style="text-align: center; color: cornflowerblue;">Today's Journal Entry</h1>
+                <form action="/add" method="post">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter a Title" name="title">
+                    </div>
                     <div class="form-group">
                     <textarea id="editor" name="note_detailed"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-success" name="add_note">Add note</button>
-                </form>
-                <button class="btn btn-danger" onclick="location.href='inner.html'">Cancel</button>
+                    <button type="submit" class="btn btn-success" name="add_note">Add entry</button>
+                </form> <br/>
+                <button class="btn btn-danger" onclick="location.href='/home'">Cancel</button>
               </div>
             </div>
           </div>

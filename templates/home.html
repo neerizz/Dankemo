@@ -31,13 +31,13 @@
                     <li class="nav-item">
                         <div class="nav-item dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" style="text-transform: uppercase;letter-spacing: 0.1rem;font-weight: 700;font-size: 0.85rem;font-family: Lato, sans-serif;color: rgba(255,255,255,0.5);">Notes&nbsp;</a>
                             <div
-                                class="dropdown-menu"><a class="dropdown-item" href="add_note.html">Add a note</a><a class="dropdown-item" href="all_notes.html">Show all notes</a></div>
+                                class="dropdown-menu"><a class="dropdown-item" href="/add">Add a note</a><a class="dropdown-item" href="/notes">Show all notes</a></div>
             </div>
             </li>
             <li class="nav-item">
-                <div class="nav-item dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" style="text-transform: uppercase;letter-spacing: 0.1rem;font-weight: 700;font-size: 0.85rem;font-family: Lato, sans-serif;color: rgba(255,255,255,0.5);">WELCOME, USER</a>
+                <div class="nav-item dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" style="text-transform: uppercase;letter-spacing: 0.1rem;font-weight: 700;font-size: 0.85rem;font-family: Lato, sans-serif;color: rgba(255,255,255,0.5);">WELCOME, {{uname}}</a>
                     <div
-                        class="dropdown-menu"><a class="dropdown-item" href="#">Home</a><a class="dropdown-item" href="#">Change Password</a><a class="dropdown-item" href="#">Logout</a></div>
+                        class="dropdown-menu"><a class="dropdown-item" href="#">Home</a><a class="dropdown-item" href="#">Change Password</a><a class="dropdown-item" href="/logout">Logout</a></div>
         </div>
         </li>
         </ul>
@@ -48,9 +48,11 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand"> <a href="#">Home </a></li>
-                <li> <a href="#">Dashboard </a></li>
-                <li> <a href="#">Dashboard </a></li>
-                <li> <a href="#">Dashboard </a></li>
+                {% if entries %}
+                {% for e in entries %}
+                    <li> <a href="#">{{ e["title"] }}</a></li>
+                {% endfor %}
+                {% endif %}
             </ul>
         </div>
         <div class="page-content-wrapper">
@@ -59,11 +61,12 @@
                     <div class="col-md-12">
                         <div></div>
                         <div style="margin-top:10px;" class="alert alert-success" role="alert">
-                            Any flash message goes here
-                          </div>
+                            Your gratitude points: {{gpoints}}
+                        </div>
                     </div>
                 </div>
             </div>
+            <h1 class="h2 mb-4" style="text-align: center; color: cornflowerblue;">Your Gratitude Journal</h1>
             <div class="container">
                 <div class="card" id="TableSorterCard">
                     <div class="row">
@@ -78,21 +81,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {% if entries %}
+                                        {% for e in entries %}
                                         <tr>
-                                            <td>Cell 1</td>
-                                            <td>Cell 2</td>
+                                            <td>{{e["title"]}}</td>
+                                            <td>{{e["date"]}}</td>
                                             <td><form action=""><button style="border:none; background-color: rgba(0,0,0,0)" ><i class="fas fa-trash-alt"></i></button></form></td>
                                         </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>6</td>
-                                            <td>8</td>
-                                        </tr>
-                                        <tr>
-                                            <td>A</td>
-                                            <td>bee</td>
-                                            <td>D</td>
-                                        </tr>
+                                        {% endfor %}
+                                        {% endif %}
                                     </tbody>
                                 </table>
                             </div>
