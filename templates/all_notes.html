@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -45,18 +47,18 @@
         {% for e in entries %}
         <div class="card">
             <div class="card-header" role="tab">
-                <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-1" href="#accordion-1 .item-1">{{e["date"]}} - {{e["title"]}}</a></h5>
+                <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-{{e['id']}}" href="#accordion-1 .item-{{e['id']}}">{{e["date"]}} - {{e["title"]}}</a></h5>
             </div>
-            <div class="collapse item-1" role="tabpanel" data-parent="#accordion-1">
+            <div class="collapse item-{{e['id']}}" role="tabpanel" data-parent="#accordion-1">
                 <div class="card-body">
-                    <p class="card-text">{{e["note"]}}</p>
+                    
+                    <p class="card-text">{{e['note']|safe}}</p>
                 </div>
             </div>
         </div>
         {% endfor %}
         {% endif %}
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.2.0/aos.js"></script>
     <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
