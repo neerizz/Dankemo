@@ -97,9 +97,11 @@ def home():
                     cid=session["user_id"])[0]["username"]
     gpoints = db.execute("SELECT gpoints FROM users WHERE id=:cid", 
                 cid=session["user_id"])[0]["gpoints"]
+    time = db.execute("SELECT time FROM users WHERE id=:cid", 
+                cid=session["user_id"])[0]["time"]
     entries = db.execute("SELECT * FROM journals WHERE username=:username", 
                 username=uname)
-    return render_template("home.html", uname=uname, gpoints=gpoints, entries=entries)
+    return render_template("home.html", uname=uname, gpoints=gpoints, time=time, entries=entries)
 
 
 @app.route("/add", methods = ["GET", "POST"])
@@ -115,7 +117,7 @@ def add():
         uname = db.execute("SELECT username FROM users WHERE id=:cid", 
                 cid=session["user_id"])[0]["username"]
         cgpoints = db.execute("SELECT gpoints FROM users WHERE id=:cid", 
-                cid=session["user_id"])[0]["username"]
+                cid=session["user_id"])[0]["gpoints"]
         ngpoints=cgpoints+1
         db.execute("UPDATE users SET gpoints = :gpoints WHERE id = :cid",
             gpoints=ngpoints, cid=session["user_id"])
