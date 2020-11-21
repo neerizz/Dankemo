@@ -18,7 +18,9 @@ def main():
             if not tnote:
                 utime = db.execute("SELECT time FROM users WHERE username=:username", username=uname)[0]["time"]
                 if localtime().tm_hour >= utime:
-                    Beep(500, 1000)           
+                    bolt_inst.digitalWrite(0, 'HIGH')
+                    sleep(2)
+                    bolt_inst.digitalWrite(0, 'LOW')           
             sleep(60)
         except Exception as e:
             print(e)
