@@ -106,12 +106,19 @@ def home():
 @login_required
 def add():
     if request.method == "GET":
-        return render_template("add_note.html")
+        uname = db.execute("SELECT username FROM users WHERE id=:cid", 
+                    cid=session["user_id"])[0]["username"]
+        return render_template("add_note.html", uname=uname)
     else:
         title = request.form.get("title")
         note = request.form.get("note_detailed")
         uname = db.execute("SELECT username FROM users WHERE id=:cid", 
                 cid=session["user_id"])[0]["username"]
+        cgpoints = db.execute("SELECT gpoints FROM users WHERE id=:cid", 
+                cid=session["user_id"])[0]["username"]
+        ngpoints=cgpoints+1
+        db.execute("UPDATE users SET gpoints = :gpoints WHERE id = :cid",
+            gpoints=ngpoints, cid=session["user_id"])
         db.execute("INSERT INTO journals(username, date, note, title) VALUES(:username, current_date, :note, :title)", username=uname, note=note, title=title)
         return redirect("/home")
 

@@ -20,17 +20,17 @@
 
 <body>
     <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-dark navbar-custom">
-        <div class="container"><a class="navbar-brand" href="#">Dankemo</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarResponsive"><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand" href="/home">Dankemo</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navbarResponsive"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item">
-                        <div class="nav-item dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" style="text-transform: uppercase;letter-spacing: 0.1rem;font-weight: 700;font-size: 0.85rem;font-family: Lato, sans-serif;color: rgba(255,255,255,0.5);">Notes&nbsp;</a>
+                        <div class="nav-item dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" style="text-transform: uppercase;letter-spacing: 0.1rem;font-weight: 700;font-size: 0.85rem;font-family: Lato, sans-serif;color: rgba(255,255,255,0.5);">Journal&nbsp;</a>
                             <div
-                                class="dropdown-menu"><a class="dropdown-item" href="#">Add a note</a><a class="dropdown-item" href="/notes">Show all notes</a></div>
+                                class="dropdown-menu"><a class="dropdown-item" href="/add">Add an entry</a><a class="dropdown-item" href="/notes">Show all entries</a></div>
                             </div>
                     </li>
                     <li class="nav-item">
-                    <div class="nav-item dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" style="text-transform: uppercase;letter-spacing: 0.1rem;font-weight: 700;font-size: 0.85rem;font-family: Lato, sans-serif;color: rgba(255,255,255,0.5);">WELCOME, USER</a>
+                    <div class="nav-item dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#" style="text-transform: uppercase;letter-spacing: 0.1rem;font-weight: 700;font-size: 0.85rem;font-family: Lato, sans-serif;color: rgba(255,255,255,0.5);">WELCOME, {{ uname }}</a>
                         <div
                             class="dropdown-menu"><a class="dropdown-item" href="inner.html">Home</a><a class="dropdown-item" href="#">Change Password</a><a class="dropdown-item" href="/logout">Logout</a></div>
                         </div>
