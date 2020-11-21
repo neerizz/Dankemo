@@ -28,16 +28,65 @@ def after_request(response):
 def index():
     return render_template("index.html")
 
+
+
 @app.route("/login", methods = ["GET", "POST"])
 def login():
+    session.clear()
     if request.method == "GET":
         return render_template("login.html")
+    
+    if not request.form.get("username"):
+        flash("Please provide a username")
+        return redirect("/login")
+
+    elif not request.form.get("password"):
+        flash("Kindly enter a password")
+        return redirect("/login")
+
+    rows = db.execute("SELECT * FROM users WHERE username = :username",
+                        username=request.form.get("username"))
+    if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
+        flash("Invalid username and/or password!")
+        return redirect("/login")
+    session["user_id"] = rows[0]["id"]
+    flash("You have successfully logged in.")
+    return redirect("/home")
+
+
 
 @app.route("/register", methods = ["GET", "POST"])
 def register():
     if request.method == "GET":
         return render_template("register.html")
 
+    if not request.form.get("username"):
+        flash("Username field is blank!")
+        return redirect("/register")
+
+    elif not request.form.get("password"):
+        flash("Password field is blank!")
+        return redirect("/register")
+
+    elif request.form.get("password") != request.form.get("confirmpass"):
+        flash("Passwords do not match!")
+        return redirect("/register")
+    else:
+        hashpwd = generate_password_hash(request.form.get("password"))
+        musrs = db.execute("SELECT * FROM users WHERE username=:username",
+                             username=request.form.get("username"))
+        if len(musrs) != 0:
+            flash("Username not available!")
+            return redirect("/register")
+        resp = db.execute("INSERT INTO users(username, time, hash, gpoints) VALUES(:username, :time, :hash, :gpoints)", username=request.form.get("username"), time=request.form.get("time"), hash=hashpwd, gpoints=0)
+        session["user_id"] = resp
+        return redirect("/home")
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    flash("You have successfully logged out.")
+    return redirect("/login")
 
 
 if __name__ == '__main__':

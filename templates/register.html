@@ -26,34 +26,48 @@
             </div>
         </div>
     </nav>
-    <br/><br/><br/>
-
-    <main>       <
+    <br/>
+    {% if get_flashed_messages() %}
+    <br/><br/>
+    <div class="alert alert-primary border text-center" role="alert">
+        {{ get_flashed_messages() | join(" ") }}
+    </div>
+    {% endif %}
+    <main>
        
-            <h1 style="padding-top: 2%; padding-left: 15%;">Register</h1>
+        <h1 style="padding-top: 10%; text-align: center; color:cadetblue">Register</h1>
             
         <div class="container">
             <center> 
-                <form action="" method="post">
+                <form action="/register" method="post">
                     
                     <div class="container">
-                      <label for="uname"><b><h3>Your Username</h3></b></label>
-                      <input type="text" placeholder="Enter Username" name="uname" required>
-                  
-                      <label for="pwd"><b><h3>Your Password</h3></b></label>
-                      <input type="password" placeholder="Enter Password" name="pwd" required>
+                        <br/><br/>
+                      <input type="text" placeholder="Enter a Username" name="username" required>
+                      <br/><br/>
+                      <div class="form-group">
+                        <label for="exampleFormControlSelect1">Select your daily journal time</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="time">
+                          <option value="16">16:00 hours</option>
+                          <option value="17">17:00 hours</option>
+                          <option value="18">18:00 hours</option>
+                          <option value="19">19:00 hours</option>
+                          <option value="20">20:00 hours</option>
+                          <option value="21">21:00 hours</option>
+                          <option value="22">22:00 hours</option>
+                          <option value="23">23:00 hours</option>
+                        </select>
+                      </div>       
+                      <br/>         
+                      <input type="password" placeholder="Enter a Password" name="password" required>
                         
-                      <label for="rpwd"><b><h3>Re-Enter Password</h3></b></label>
-                      <input type="password" placeholder="Re-Enter Password" name="rpwd" required>
-
-                      <button type="submit" style="background-color: brown;">Register</button>
+                      <input type="password" placeholder="Re-Enter Password" name="confirmpass" required>
+                      
+                      <br/><br/>
+                      <button type="submit" style="background-color: rgb(196, 24, 24);">Register</button>
                       <label>
                         <input type="checkbox" checked="checked" name="remember"> Remember me
                       </label>
-                    </div>
-                  
-                    <div class="container" style="background-color:#f1f1f1">
-                      <button type="button" class="cancelbtn">Cancel</button>
                     </div>
                   </form>
             </center>
