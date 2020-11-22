@@ -1,6 +1,6 @@
 # Welcome to Dankemo!
 
-**Dankemo** is a gratitude journal keeping application with a reward system. Motivation being, Gratitue is an antidote to dissatisfaction. This application also features the use of *IOT components*. It has been implemented using *HTML, CSS, Bootstrap, Javasript, JQuery, Python* and *Flask*. 
+**Dankemo** is a gratitude journal keeping application with a reward system. Motivation being, Gratitude is an antidote to dissatisfaction. This application also features the use of *IOT components*. It has been implemented using *HTML, CSS, Bootstrap, Javasript, JQuery, Python* and *Flask*. 
 
 **Dependencies:**
 (You need python installed in order to run it)
