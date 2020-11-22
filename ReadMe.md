@@ -13,8 +13,8 @@ $ pip install -r requirements.txt
 ```
 $ git clone https://github.com/Yoddha99/Dankemo
 ```
-3) Install the dependencies
-4) Run the web-app : 
+2) Install the dependencies
+3) Run the web-app : 
 ```
 $ python app.py
 ```
