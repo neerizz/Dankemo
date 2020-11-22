@@ -4,15 +4,21 @@
 
 **Dependencies:**
 (You need python installed in order to run it)
-1) pip install flask
-2) pip install cs50
-3) pip install flask_session
+```
+$ pip install -r requirements.txt
+```
 
 **Setting it up:**
-1) Fork the directory
-2) git clone it
+1) Clone the repo :
+```
+$ git clone https://github.com/Yoddha99/Dankemo
+```
 3) Install the dependencies
-4) run it using : python app.py
+4) Run the web-app : 
+```
+$ python app.py
+```
+
 
 
 **Screenshots:**
