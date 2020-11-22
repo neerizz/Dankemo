@@ -88,7 +88,7 @@
                                         <tr>
                                             <td>{{e["title"]}}</td>
                                             <td>{{e["date"]}}</td>
-                                            <td><form action=""><button style="border:none; background-color: rgba(0,0,0,0)" ><i class="fas fa-trash-alt"></i></button></form></td>
+                                            <td><form action="{{url_for('delete_article', id=e.id)}}" method="POST"><button type="submit" value="Delete" style="border:none; background-color: rgba(0,0,0,0)" ><i class="fas fa-trash-alt"></i></button></form></td>
                                         </tr>
                                         {% endfor %}
                                         {% endif %}

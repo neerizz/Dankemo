@@ -1,4 +1,4 @@
-from flask import Flask, flash, render_template, request, redirect, session
+from flask import Flask, flash, render_template, request, redirect, session, url_for
 from cs50 import SQL
 from tempfile import mkdtemp
 from helpers import login_required
@@ -132,6 +132,18 @@ def notes():
     entries = db.execute("SELECT * FROM journals WHERE username=:username", 
                 username=uname)
     return render_template("all_notes.html", uname=uname, entries=entries)
+
+
+@app.route('/delete_article/<string:id>', methods=['POST'])
+@login_required
+def delete_article(id):
+
+    db.execute("DELETE FROM journals WHERE id = :did", did = id)
+
+    flash('Article Deleted', 'success')
+
+    return redirect(url_for('home'))
+
 
 
 if __name__ == '__main__':
